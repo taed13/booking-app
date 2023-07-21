@@ -78,7 +78,7 @@ export default function Header() {
             />
           </svg>
         </div>
-        {!!user && <div>{user.name}</div>}
+        {!!user && user.name && <div>{user.name}</div>}
       </Link>
     </header>
   );
