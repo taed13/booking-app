@@ -28,6 +28,10 @@ function App() {
             path="/account/places/new"
             element={<PlacesFormPage />}
           ></Route>
+          <Route
+            path="/account/places/:id"
+            element={<PlacesFormPage />}
+          ></Route>
         </Route>
       </Routes>
     </UserContextProvider>
