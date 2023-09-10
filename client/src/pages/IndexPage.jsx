@@ -1,6 +1,35 @@
-import { Link } from "react-router-dom";
-import Header from "../Header";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function IndexPage() {
-  return <div>index page here </div>;
+  const [places, setPlaces] = useState([]);
+  useEffect(() => {
+    axios.get("places").then((response) => {
+      setPlaces(response.data);
+    });
+  }, []);
+  return (
+    <>
+      {places.length > 0 &&
+        places.map((place) => (
+          <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="bg-gray-500 mb-2 rounded-2xl">
+              {place.photos?.[0] && (
+                <img
+                  className="rounded-2xl object-cover aspect-square"
+                  src={"http://localhost:4000/uploads/" + place.photos?.[0]}
+                  alt=""
+                />
+              )}
+            </div>
+            <h3 className="font-bold">{place.address}</h3>
+            <h2 className="text-sm truncate text-gray-500">{place.title}</h2>
+            <div className="mt-1">
+              <span className="font-bold">${place.price}</span> / night &middot;
+              Free cancellation
+            </div>
+          </div>
+        ))}
+    </>
+  );
 }

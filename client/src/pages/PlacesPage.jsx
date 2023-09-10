@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export default function PlacesPage() {
   const [places, setPlaces] = useState([]);
   useEffect(() => {
-    axios.get("/places").than(({ data }) => {
+    axios.get("/user-places").than(({ data }) => {
       setPlaces(data);
     });
   }, []);
